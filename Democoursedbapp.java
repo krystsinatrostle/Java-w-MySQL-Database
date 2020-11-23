@@ -247,9 +247,13 @@ public class Democoursedbapp extends Application {
     //Build the connection to the DB.
     private void initializeDB() {
         try {
+            // Creates a new instance of the class and hence causes the Driver class to be initialized and in turn 
+            // the class registers itself w/DriverManager to create mysql conn based on the url
+            // Note: application no longer neeeds to explictly load JDBC drivers using Class.forName(),included
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost/projectdb", "projectuser", "projectuser");
         } catch (Exception ex) {
+            // Pinpoints the exact line, prints throwable along with line number and class name 
             ex.printStackTrace();
             showAlert("Connection failed - check DB is created");
         }
